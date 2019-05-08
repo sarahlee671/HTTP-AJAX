@@ -1,34 +1,29 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
-
+import FriendList from './Friends/FriendList'
+import {Route} from 'react-router-dom';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      items: []
-    };
+    // this.state = {
+    //   items: []
+    // };
   }
 
-  componentDidMount () {
-    axios
-      .get('http://localhost:5000/friends')
-      .then(res => {
-        console.log(res);
-        this.setState({ items: res.friends })
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  
 
   render() {
    
     return (
-      
+      <Route path="/" component={FriendList} />
+      // <FriendList />
     )
+    
   }
+      
+    
+  
 
 
 
