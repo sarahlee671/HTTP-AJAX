@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../App.css';
+
+
 
 export default class FriendList extends Component {
     constructor(props) {
@@ -35,10 +38,12 @@ export default class FriendList extends Component {
 function FriendDetails({ friend }) {
     const { name, age, email } = friend;
     return (
-        < div className="friend-card">
-            <h2>{name}</h2>
-            <p>{age}</p>
-            <p>{email}</p>
+        <div>
+            < div className="friend-card">
+                <h2>{name}</h2>
+                <p>{age}</p>
+                <p>{email}</p>
+            </div>
         </div>
     );
 }

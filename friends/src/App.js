@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import FriendList from './Friends/FriendList'
 import {Route} from 'react-router-dom';
+import Form from '../src/Friends/Form';
 
 class App extends React.Component {
   constructor() {
@@ -16,17 +17,13 @@ class App extends React.Component {
   render() {
    
     return (
-      <Route path="/" component={FriendList} />
-      // <FriendList />
+      <div>
+
+        <Form />
+        <Route path="/" component={FriendList} />
+      </div>
     )
-    
   }
-      
-    
-  
-
-
-
 }
 
 export default App;
