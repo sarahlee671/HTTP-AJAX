@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import FriendList from './Friends/FriendList'
 import {Route} from 'react-router-dom';
-import Form from '../src/Friends/Form';
+import PostForm from './Friends/PostForm';
+import Axios from 'axios';
 
 class App extends React.Component {
   constructor() {
@@ -12,14 +13,20 @@ class App extends React.Component {
     // };
   }
 
-  
+  // postFriend = e => {
+
+  //   Axios.post('http://localhost:5000/friends', friend)
+  //     .then(res => {console.log(res)})
+  //     .catch(err => {console.log(err)})
+
+  // }
 
   render() {
    
     return (
       <div>
 
-        <Form />
+        <PostForm postFriend={this.postFriend} />
         <Route path="/" component={FriendList} />
       </div>
     )
