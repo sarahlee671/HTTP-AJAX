@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../App.css';
+import Friend from './Friend'
 
 
 
@@ -28,22 +29,10 @@ export default class FriendList extends Component {
         return (
             <div className="friend-list">
                 {this.state.friends.map(friend => (
-                    <FriendDetails key={friend.id} friend={friend} />
+                    <Friend key={friend.id} friend={friend} />
                 ))}
             </div>
         )
     }
 }
 
-function FriendDetails({ friend }) {
-    const { name, age, email } = friend;
-    return (
-        <div>
-            < div className="friend-card">
-                <h2>{name}</h2>
-                <p>{age}</p>
-                <p>{email}</p>
-            </div>
-        </div>
-    );
-}
