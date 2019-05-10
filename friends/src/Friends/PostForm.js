@@ -1,36 +1,48 @@
 import React from 'react';
-import Axios from 'axios';
+
 
 class PostForm extends React.Component {
     constructor() {
         super();
         this.state= {
+            friend:{
                 name: '',
                 age: '',
                 email: ''
+            }
         };
     }
 
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value})
+        e.persist();
+        let value = e.target.value;
+        if (e.target.name === 'age') {
+            value = parseInt(value, 10)
+        }
+        this.setState(prevState => ({
+            friend: {
+                ...prevState.friend,
+                [e.target.name]: value
+            }
+        }))
     }
 
-    postFriend = e => {
+    handleSubmit = e => {
         e.preventDefault();
-        const { name, age, email} = this.state;
-        Axios.post('http://localhost:5000/friends', {
-            name,
-            age,
-            email
-        })
-            .then(res => {console.log(res)})
-            .catch(err => {console.log(err)})
+        
+ 
+        this.props.addFriend(this.state.friend);
+        e.target.reset()
+
         this.setState({
-            name: "",
-            age: "",
-            email: ""
+            friend: {
+                name: '',
+                age: '',
+                email: ''
+            }
         })
     }
+
     
 
 
@@ -38,17 +50,18 @@ class PostForm extends React.Component {
     render() {
         return (
             <div className="form-container">
-                <h1>Add New Friend</h1>
-                <form onSubmit={this.postFriend}>
+                <h1>Friends</h1>
+                
+                <form onSubmit={this.handleSubmit}>
                     
                     <div>
+                        
                         <input 
-                            className="input"
                             name ="name" 
                             type="text" 
                             placeholder="name" 
                             onChange={this.handleChange} 
-                            value={this.state.name} 
+                            value={this.state.friend.name} 
                         />
                     </div>
                     <div>
@@ -58,7 +71,7 @@ class PostForm extends React.Component {
                             type="text" 
                             placeholder="age"
                             onChange={this.handleChange}
-                            value={this.state.age}
+                            value={this.state.friend.age}
                         />
                     </div>
                     <div>
@@ -68,10 +81,10 @@ class PostForm extends React.Component {
                             type="text" 
                             placeholder="email"
                             onChange={this.handleChange}
-                            value={this.state.email}
+                            value={this.state.friend.email}
                         />
                     </div>
-                    <button>Submit</button>
+                    <button>Add New Friend</button>
                 </form>
             </div>
         )
